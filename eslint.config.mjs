@@ -10,10 +10,17 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
+  // Ignore patterns
+  {
+    ignores: ['node_modules/', 'dist/', 'out/', '.next/', '*.d.ts'],
+  },
+
+  // Next.js app files (TypeScript)
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   ...compat.extends('prettier'),
   ...compat.plugins('prettier'),
   {
+    files: ['app/**/*.{ts,tsx}', '*.ts', '*.tsx'],
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
@@ -44,23 +51,49 @@ const eslintConfig = [
       'prefer-template': 'error',
     },
   },
+
+  // Electron files (separate TypeScript project)
   {
     files: ['electron/**/*.ts'],
+    languageOptions: {
+      parserOptions: {
+        project: './electron/tsconfig.json',
+        tsconfigRootDir: __dirname,
+      },
+    },
     rules: {
+      'prettier/prettier': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
       'no-console': 'off',
       '@typescript-eslint/no-var-requires': 'off',
+      'prefer-const': 'error',
+      'no-var': 'error',
+      'object-shorthand': 'error',
+      'prefer-template': 'error',
     },
   },
+
+  // JavaScript config files (no TypeScript parser)
   {
-    files: ['*.config.{js,ts}', 'scripts/**/*.js'],
+    files: ['*.config.{js,mjs}', 'scripts/**/*.js'],
     rules: {
-      '@typescript-eslint/no-var-requires': 'off',
-      '@typescript-eslint/no-require-imports': 'off',
+      'prettier/prettier': 'error',
       'no-console': 'off',
+      'prefer-const': 'error',
+      'no-var': 'error',
+      'object-shorthand': 'error',
+      'prefer-template': 'error',
     },
-  },
-  {
-    ignores: ['node_modules/', 'dist/', 'out/', '.next/', '*.d.ts'],
   },
 ]
 
