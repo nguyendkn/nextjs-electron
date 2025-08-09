@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A minimal Electron app with Next.js App Router and TypeScript",
   "main": "dist/electron/main.js",
-  "homepage": "./",
   "private": true,
   "scripts": {
     "dev": "concurrently \"pnpm dev:nextjs\" \"pnpm dev:electron\"",
