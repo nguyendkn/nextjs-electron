@@ -196,6 +196,14 @@ The `.github/dependabot.yml` file configures:
 - Automatic merging of patch updates
 - GitHub Actions workflow updates
 
+### Lock File Management
+
+This project uses pnpm and includes `pnpm-lock.yaml` for reproducible builds:
+
+- **Commit the lock file**: `pnpm-lock.yaml` should be committed to ensure consistent dependency versions
+- **First setup**: Run `pnpm install` locally to generate the lock file
+- **CI/CD**: Workflows will use the committed lock file for faster, reproducible builds
+
 ### Code Signing (Optional)
 
 To enable code signing, add the following secrets to your GitHub repository:
