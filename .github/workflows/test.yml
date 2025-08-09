@@ -12,12 +12,8 @@ concurrency:
 
 jobs:
   test:
-    name: Test on Node.js ${{ matrix.node-version }}
+    name: Test on Node.js 24
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18, 20, 22]
 
     steps:
       - name: Checkout code
@@ -28,10 +24,10 @@ jobs:
         with:
           version: latest
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '24'
           cache: 'pnpm'
 
       - name: Install dependencies
