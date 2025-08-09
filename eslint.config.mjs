@@ -28,7 +28,12 @@ const eslintConfig = [
       },
     },
     rules: {
-      'prettier/prettier': 'error',
+      'prettier/prettier': [
+        'error',
+        {
+          endOfLine: 'auto',
+        },
+      ],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -62,7 +67,12 @@ const eslintConfig = [
       },
     },
     rules: {
-      'prettier/prettier': 'error',
+      'prettier/prettier': [
+        'error',
+        {
+          endOfLine: 'auto',
+        },
+      ],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -87,7 +97,12 @@ const eslintConfig = [
   {
     files: ['*.config.{js,mjs}', 'scripts/**/*.js'],
     rules: {
-      'prettier/prettier': 'error',
+      'prettier/prettier': [
+        'error',
+        {
+          endOfLine: 'auto',
+        },
+      ],
       'no-console': 'off',
       'prefer-const': 'error',
       'no-var': 'error',

@@ -3,6 +3,8 @@
   "productName": "Next.js Electron App",
   "publish": null,
   "forceCodeSigning": false,
+  "afterSign": null,
+  "afterAllArtifactBuild": null,
   "directories": {
     "output": "dist",
     "buildResources": "build"
@@ -32,7 +34,9 @@
         "arch": ["x64"]
       }
     ],
-    "sign": false
+    "sign": false,
+    "certificateFile": null,
+    "certificatePassword": null
   },
   "linux": {
     "target": [

@@ -16,6 +16,7 @@
     "dist:mac": "pnpm build && electron-builder --mac --config electron-builder.json",
     "dist:linux": "pnpm build && electron-builder --linux --config electron-builder.json",
     "dist:dir": "pnpm build && electron-builder --dir --config electron-builder.json",
+    "dist:ci": "pnpm build && electron-builder --dir --config electron-builder.json",
     "type-check": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "lint:check": "eslint . --ext .ts,.tsx,.js,.jsx",

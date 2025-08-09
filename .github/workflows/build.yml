@@ -85,22 +85,27 @@ jobs:
         run: pnpm run build
 
       - name: Build Electron app
-        run: pnpm run dist:${{ matrix.platform }}
+        run: pnpm run dist:ci
         env:
           # Disable code signing and auto-publishing
           CSC_IDENTITY_AUTO_DISCOVERY: false
           ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true
+          # Windows specific - disable all signing
+          WIN_CSC_LINK: ''
+          WIN_CSC_KEY_PASSWORD: ''
+          # macOS specific - disable signing
+          APPLE_ID: ''
+          APPLE_ID_PASS: ''
+          APPLE_TEAM_ID: ''
+          # Disable publishing
+          GH_TOKEN: ''
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.platform }}-${{ matrix.arch }}
+          name: ${{ matrix.platform }}-${{ matrix.arch }}-unpacked
           path: |
-            dist/*.exe
-            dist/*.dmg
-            dist/*.AppImage
-            dist/*.deb
-            dist/*.rpm
+            dist/*-unpacked/
           retention-days: 30
 
   # Release job (only runs when tags are pushed)
