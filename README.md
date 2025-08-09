@@ -154,6 +154,63 @@ contextBridge.exposeInMainWorld('electronAPI', {
 })
 ```
 
+## CI/CD and Automation
+
+### GitHub Actions Workflows
+
+This project includes automated GitHub Actions workflows:
+
+#### 🔄 **Build Workflow** (`.github/workflows/build.yml`)
+
+- Runs on push/PR to `main` or `develop` branches
+- Code quality checks (TypeScript, ESLint, Prettier)
+- Multi-platform builds: Windows, macOS, Linux
+- Upload artifacts for each platform
+- Automatic release creation when git tags are pushed
+
+#### 🧪 **Test Workflow** (`.github/workflows/test.yml`)
+
+- Tests across multiple Node.js versions (18, 20, 22)
+- Security vulnerability scanning
+- Dependencies and license auditing
+
+#### 🚀 **Release Workflow** (`.github/workflows/release.yml`)
+
+- Manual trigger for creating releases
+- Automatic version updates in package.json
+- Git tag creation and changelog generation
+- Build and upload distributables
+
+#### 🤖 **Dependabot Auto-merge** (`.github/workflows/dependabot-auto-merge.yml`)
+
+- Automatic merging of patch updates
+- Auto-approval of minor updates for dev dependencies
+- Warning comments for major updates
+
+### Dependabot Configuration
+
+The `.github/dependabot.yml` file configures:
+
+- Automatic weekly dependency updates
+- Grouping of related updates
+- Automatic merging of patch updates
+- GitHub Actions workflow updates
+
+### Code Signing (Optional)
+
+To enable code signing, add the following secrets to your GitHub repository:
+
+**Windows:**
+
+- `CSC_LINK`: Certificate file (base64 encoded)
+- `CSC_KEY_PASSWORD`: Certificate password
+
+**macOS:**
+
+- `APPLE_ID`: Apple ID email
+- `APPLE_ID_PASS`: App-specific password
+- `APPLE_TEAM_ID`: Apple Team ID
+
 ## License
 
 MIT License - feel free to use this template for your projects.

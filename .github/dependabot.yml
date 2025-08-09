@@ -1,0 +1,80 @@
+version: 2
+updates:
+  # Update npm dependencies
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Ho_Chi_Minh'
+    open-pull-requests-limit: 10
+    # reviewers:
+    #   - "your-username" # Uncomment and replace with your GitHub username
+    # assignees:
+    #   - "your-username" # Uncomment and replace with your GitHub username
+    commit-message:
+      prefix: 'deps'
+      prefix-development: 'deps-dev'
+      include: 'scope'
+    # Group dependency updates
+    groups:
+      # Group Next.js and React
+      nextjs:
+        patterns:
+          - 'next'
+          - 'react*'
+          - '@next/*'
+      # Group Electron
+      electron:
+        patterns:
+          - 'electron*'
+      # Group TypeScript
+      typescript:
+        patterns:
+          - 'typescript'
+          - '@types/*'
+      # Group ESLint and Prettier
+      linting:
+        patterns:
+          - 'eslint*'
+          - '@eslint/*'
+          - 'prettier*'
+          - '@typescript-eslint/*'
+      # Group Tailwind CSS
+      tailwind:
+        patterns:
+          - 'tailwindcss'
+          - '@tailwindcss/*'
+      # Group build tools
+      build-tools:
+        patterns:
+          - 'concurrently'
+          - 'cross-env'
+          - 'wait-on'
+          - 'rimraf'
+    # Automatically merge patch updates
+    allow:
+      - dependency-type: 'direct'
+      - dependency-type: 'indirect'
+    # Ignore packages you don't want to update (uncomment if needed)
+    # ignore:
+    #   - dependency-name: "package-name"
+    #     versions: ["1.x", "2.x"]
+
+  # Update GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Ho_Chi_Minh'
+    open-pull-requests-limit: 5
+    # reviewers:
+    #   - "your-username" # Uncomment and replace with your GitHub username
+    # assignees:
+    #   - "your-username" # Uncomment and replace with your GitHub username
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
