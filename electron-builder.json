@@ -1,0 +1,56 @@
+{
+  "appId": "com.example.nextjs-electron-app",
+  "productName": "Next.js Electron App",
+  "directories": {
+    "output": "dist",
+    "buildResources": "build"
+  },
+  "files": ["dist/electron/**/*", "out/**/*", "package.json"],
+  "extraResources": [
+    {
+      "from": "out",
+      "to": "app",
+      "filter": ["**/*"]
+    }
+  ],
+  "mac": {
+    "category": "public.app-category.productivity",
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      }
+    ],
+    "icon": "build/icon.icns"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icon.ico"
+  },
+  "linux": {
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icon.png",
+    "category": "Utility"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true
+  },
+  "dmg": {
+    "title": "${productName}",
+    "icon": "build/icon.icns"
+  },
+  "publish": null
+}
