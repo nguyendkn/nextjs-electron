@@ -1,6 +1,8 @@
 {
   "appId": "com.example.nextjs-electron-app",
   "productName": "Next.js Electron App",
+  "publish": null,
+  "forceCodeSigning": false,
   "directories": {
     "output": "dist",
     "buildResources": "build"
@@ -21,7 +23,7 @@
         "arch": ["x64", "arm64"]
       }
     ],
-    "icon": "build/icon.icns"
+    "identity": null
   },
   "win": {
     "target": [
@@ -30,7 +32,7 @@
         "arch": ["x64"]
       }
     ],
-    "icon": "build/icon.ico"
+    "sign": false
   },
   "linux": {
     "target": [
@@ -39,7 +41,6 @@
         "arch": ["x64"]
       }
     ],
-    "icon": "build/icon.png",
     "category": "Utility"
   },
   "nsis": {
@@ -49,8 +50,6 @@
     "createStartMenuShortcut": true
   },
   "dmg": {
-    "title": "${productName}",
-    "icon": "build/icon.icns"
-  },
-  "publish": null
+    "title": "${productName}"
+  }
 }

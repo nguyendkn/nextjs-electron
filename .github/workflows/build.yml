@@ -87,7 +87,9 @@ jobs:
       - name: Build Electron app
         run: pnpm run dist:${{ matrix.platform }}
         env:
+          # Disable code signing and auto-publishing
           CSC_IDENTITY_AUTO_DISCOVERY: false
+          ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

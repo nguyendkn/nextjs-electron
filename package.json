@@ -11,10 +11,11 @@
     "build": "pnpm build:nextjs && pnpm build:electron",
     "build:nextjs": "next build",
     "build:electron": "tsc -p electron/tsconfig.json",
-    "dist": "pnpm build && electron-builder",
-    "dist:win": "pnpm build && electron-builder --win",
-    "dist:mac": "pnpm build && electron-builder --mac",
-    "dist:linux": "pnpm build && electron-builder --linux",
+    "dist": "pnpm build && electron-builder --config electron-builder.json",
+    "dist:win": "pnpm build && electron-builder --win --config electron-builder.json",
+    "dist:mac": "pnpm build && electron-builder --mac --config electron-builder.json",
+    "dist:linux": "pnpm build && electron-builder --linux --config electron-builder.json",
+    "dist:dir": "pnpm build && electron-builder --dir --config electron-builder.json",
     "type-check": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "lint:check": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -53,63 +54,6 @@
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2",
     "wait-on": "^8.0.4"
-  },
-  "build": {
-    "appId": "com.example.nextjs-electron-app",
-    "productName": "Next.js Electron App",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "dist/electron/**/*",
-      "out/**/*",
-      "package.json"
-    ],
-    "extraResources": [
-      {
-        "from": "out",
-        "to": "app",
-        "filter": [
-          "**/*"
-        ]
-      }
-    ],
-    "mac": {
-      "category": "public.app-category.productivity",
-      "target": [
-        {
-          "target": "dmg",
-          "arch": [
-            "x64",
-            "arm64"
-          ]
-        }
-      ]
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64"
-          ]
-        }
-      ]
-    },
-    "linux": {
-      "target": [
-        {
-          "target": "AppImage",
-          "arch": [
-            "x64"
-          ]
-        }
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
-    }
   },
   "keywords": [
     "electron",
